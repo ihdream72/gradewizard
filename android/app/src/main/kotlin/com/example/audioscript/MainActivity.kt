@@ -1,4 +1,4 @@
-package com.example.audioscript
+package com.example.gradewizard
 
 import io.flutter.embedding.android.FlutterActivity
 

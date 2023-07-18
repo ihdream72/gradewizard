@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:audioscript/app/core/values/app_values.dart';
-import 'package:audioscript/app/core/widget/common/common_bottom_button.dart';
 
 import '/app/core/base/base_view.dart';
 import '/app/core/utils/ui_size_config.dart';
+import '/app/core/values/app_values.dart';
+import '/app/core/widget/common/common_bottom_button.dart';
 import '../../../core/utils/logger.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/text_styles.dart';
@@ -21,7 +21,7 @@ class HomeView extends BaseView<HomeController> {
   Widget? appBar(BuildContext context) {
 
     return CTitleBar(
-      title: 'audioscript',
+      title: 'gradewizard',
       onBack: () => controller.goBack(),
       color: AppColors.secondary,
     );
@@ -51,7 +51,7 @@ class HomeView extends BaseView<HomeController> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('audioscript', style: Styles.suitXXLBold.copyWith(color: AppColors.primary),),
+          Text('gradewizard', style: Styles.suitXXLBold.copyWith(color: AppColors.primary),),
           SizedBox(height: 20.s,),
           GestureDetector(
             onTap: () => controller.goAudioReading(),

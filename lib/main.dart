@@ -40,7 +40,7 @@ class MyApp extends GetView<AppController> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
 
     return GetMaterialApp(
-      title: 'audioscript',
+      title: 'gradewizard',
       initialRoute: AppPages.initial,
       initialBinding: InitialBinding(),
       getPages: AppPages.routes,

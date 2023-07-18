@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:audioscript/app/core/values/app_values.dart';
+import '/app/core/values/app_values.dart';
 
 import '../../utils/ui_size_config.dart';
 import '../../values/app_colors.dart';

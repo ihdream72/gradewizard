@@ -1,5 +1,5 @@
 
-# This is for audioscript.
+# This is for gradewizard.
 
 ## 개발 환경 (GetX, MVVM, Rx) 
 - 상태 관리 : GetX (ver 4.6.5)
