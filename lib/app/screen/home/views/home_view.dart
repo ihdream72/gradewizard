@@ -21,7 +21,7 @@ class HomeView extends BaseView<HomeController> {
   Widget? appBar(BuildContext context) {
 
     return CTitleBar(
-      title: 'gradewizard',
+      title: '등급 계산기',
       onBack: () => controller.goBack(),
       color: AppColors.secondary,
     );
@@ -44,40 +44,94 @@ class HomeView extends BaseView<HomeController> {
   Widget body(BuildContext context) {
     UISizeConfig.init(context);
 
-    return SizedBox(
+    return Container(
       width: Get.width,
       height: Get.height - Get.mediaQuery.padding.top - Get.mediaQuery.padding.bottom - AppValues.appBarSize,
+      padding: EdgeInsets.all(8.s),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('gradewizard', style: Styles.suitXXLBold.copyWith(color: AppColors.primary),),
           SizedBox(height: 20.s,),
-          GestureDetector(
-            onTap: () => controller.goAudioReading(),
-            child: Container(
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(4.s),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.text01),
+              borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(8.0),
+                  topLeft: Radius.circular(8.0)),
+              color: AppColors.white,
+            ),
+            child: Text('과목', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
+          ),
+          Container(
+            height: 80.s,
+            padding: EdgeInsets.all(4.s),
+            decoration: const BoxDecoration(
+              // border: Border.all(color: AppColors.text01),
+              border: Border(
+                left: BorderSide(color: AppColors.text01),
+                right: BorderSide(color: AppColors.text01),
+                bottom: BorderSide(color: AppColors.text01),),
+              // borderRadius: const BorderRadius.only(
+              //     bottomRight: Radius.circular(8.0),
+              //     bottomLeft: Radius.circular(8.0)),
+              color: AppColors.white,
+            ),
+            child: ListView(
+              primary: true,
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              scrollDirection: Axis.horizontal,
               padding: EdgeInsets.all(8.s),
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.text01),
-                borderRadius: BorderRadius.circular(8.s),
-                color: AppColors.white,
-              ),
-              child: Text('BTS UN 연설 듣기', style: Styles.suitLGBold.copyWith(color: AppColors.text01)),
+              children: [
+                Container(
+                  width: 50.s,
+                  height: 50.s,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.text01),
+                    color: AppColors.white,
+                  ),
+                  child: Text('국어', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
+                ),
+                SizedBox(width: 10.s,),
+                Container(
+                  width: 50.s,
+                  height: 50.s,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.text01),
+                    color: AppColors.white,
+                  ),
+                  child: Text('영어', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
+                ),
+                SizedBox(width: 10.s,),
+                Container(
+                  width: 50.s,
+                  height: 50.s,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.text01),
+                    color: AppColors.white,
+                  ),
+                  child: Text('수학', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
+                ),
+                SizedBox(width: 10.s,),
+                Container(
+                  width: 50.s,
+                  height: 50.s,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.text01),
+                    color: AppColors.white,
+                  ),
+                  child: Text('과학', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
+                ),
+              ],
             ),
           ),
-          SizedBox(height: 10.s,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
 
-              Container(
-                  width: 150,
-                  child: TextField()
-              ),
-              Text('유승이 전교 3등', style: Styles.suitXXLBold.copyWith(color: Colors.black),),
-            ],
-          )
 
         ],
       ),

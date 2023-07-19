@@ -1,3 +1,8 @@
 /.dart_tool/
 /.idea/
 /build/
+*.lock
+*.bin
+android/.gradle/7.2/executionHistory/executionHistory.bin
+android/.gradle/7.2/executionHistory/executionHistory.bin
+.flutter-plugins-dependencies
