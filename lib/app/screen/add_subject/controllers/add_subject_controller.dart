@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../core/base/base_controller.dart';
 import '../../../routes/app_routes.dart';
 
-class HomeController extends BaseController {
+class AddSubjectController extends BaseController {
 
   /// Input Argument  ==>
   // 없음
@@ -16,8 +16,13 @@ class HomeController extends BaseController {
     super.onInit();
   }
 
-  void goAudioReading() {
-    Get.toNamed(Routes.audioReading);
+  @override
+  Future<bool> goBack() async {
+    unFocusAll();
+
+    Get.back();
+
+    return Future.value(false);
   }
 
   void goAddSubject() {

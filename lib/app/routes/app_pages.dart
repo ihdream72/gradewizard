@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../screen/add_subject/bindings/add_subject_binding.dart';
+import '../screen/add_subject/views/add_subject_view.dart';
 import '../screen/audio_reading/bindings/audio_reading_binding.dart';
 import '../screen/audio_reading/views/audio_reading_view.dart';
 import '../screen/home/bindings/home_binding.dart';
@@ -22,7 +24,11 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
-
+    GetPage(
+      name: Routes.addSubject,
+      page: () => const AddSubjectView(),
+      binding: AddSubjectBinding(),
+    ),
     GetPage(
       name: Routes.webview,
       page: () => const InAppWebView(),

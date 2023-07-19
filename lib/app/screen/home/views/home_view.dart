@@ -61,9 +61,9 @@ class HomeView extends BaseView<HomeController> {
               borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(8.0),
                   topLeft: Radius.circular(8.0)),
-              color: AppColors.white,
+              color: AppColors.blue02,
             ),
-            child: Text('과목', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
+            child: Text('과목', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
           ),
           Container(
             height: 80.s,
@@ -85,49 +85,13 @@ class HomeView extends BaseView<HomeController> {
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.all(8.s),
               children: [
-                Container(
-                  width: 50.s,
-                  height: 50.s,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.text01),
-                    color: AppColors.white,
-                  ),
-                  child: Text('국어', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
-                ),
-                SizedBox(width: 10.s,),
-                Container(
-                  width: 50.s,
-                  height: 50.s,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.text01),
-                    color: AppColors.white,
-                  ),
-                  child: Text('영어', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
-                ),
-                SizedBox(width: 10.s,),
-                Container(
-                  width: 50.s,
-                  height: 50.s,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.text01),
-                    color: AppColors.white,
-                  ),
-                  child: Text('수학', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
-                ),
-                SizedBox(width: 10.s,),
-                Container(
-                  width: 50.s,
-                  height: 50.s,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.text01),
-                    color: AppColors.white,
-                  ),
-                  child: Text('과학', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
-                ),
+                subject(null),
+                subject('영어'),
+                subject('수학'),
+                subject('과학'),
+                subject('국사'),
+                subject('정보'),
+                subject('사회'),
               ],
             ),
           ),
@@ -135,6 +99,36 @@ class HomeView extends BaseView<HomeController> {
 
         ],
       ),
+    );
+  }
+
+  Widget subject(String? name) {
+
+    return name == null ?
+    GestureDetector(
+      onTap: () => controller.goAddSubject() ,
+      child: Container(
+          width: 60.s,
+          height: 50.s,
+          margin: EdgeInsets.only( right: 10.s),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.blue04),
+            color: AppColors.blue04,
+          ),
+          child: const Icon(Icons.add, color: AppColors.white,),
+        ),
+    ) :
+    Container(
+      width: 60.s,
+      height: 50.s,
+      margin: EdgeInsets.only( right: 10.s),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.blue04),
+        color: AppColors.blue04,
+      ),
+      child: Text(name, style: Styles.suitMDBold.copyWith(color: AppColors.white),),
     );
   }
 }
