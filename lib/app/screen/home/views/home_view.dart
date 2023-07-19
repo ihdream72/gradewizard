@@ -20,9 +20,8 @@ class HomeView extends BaseView<HomeController> {
   @override
   Widget? appBar(BuildContext context) {
 
-    return CTitleBar(
+    return const CTitleBar(
       title: '등급 계산기',
-      onBack: () => controller.goBack(),
       color: AppColors.secondary,
     );
   }
@@ -52,53 +51,66 @@ class HomeView extends BaseView<HomeController> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          subjectList(),
           SizedBox(height: 20.s,),
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.all(4.s),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.text01),
-              borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(8.0),
-                  topLeft: Radius.circular(8.0)),
-              color: AppColors.blue02,
-            ),
-            child: Text('과목', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
-          ),
-          Container(
-            height: 80.s,
-            padding: EdgeInsets.all(4.s),
-            decoration: const BoxDecoration(
-              // border: Border.all(color: AppColors.text01),
-              border: Border(
-                left: BorderSide(color: AppColors.text01),
-                right: BorderSide(color: AppColors.text01),
-                bottom: BorderSide(color: AppColors.text01),),
-              // borderRadius: const BorderRadius.only(
-              //     bottomRight: Radius.circular(8.0),
-              //     bottomLeft: Radius.circular(8.0)),
-              color: AppColors.white,
-            ),
-            child: ListView(
-              primary: true,
-              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.all(8.s),
-              children: [
-                subject(null),
-                subject('영어'),
-                subject('수학'),
-                subject('과학'),
-                subject('국사'),
-                subject('정보'),
-                subject('사회'),
-              ],
-            ),
-          ),
-
-
+          summarizeGrade(),
+          SizedBox(height: 20.s,),
+          shareGrade(),
         ],
-      ),
+      )
+    );
+  }
+
+  Widget subjectList() {
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SizedBox(height: 20.s,),
+        Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(4.s),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.text01),
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8.0),
+                topLeft: Radius.circular(8.0)),
+            color: AppColors.blue02,
+          ),
+          child: Text('과목', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
+        ),
+        Container(
+          height: 80.s,
+          padding: EdgeInsets.all(4.s),
+          decoration: const BoxDecoration(
+            // border: Border.all(color: AppColors.text01),
+            border: Border(
+              left: BorderSide(color: AppColors.text01),
+              right: BorderSide(color: AppColors.text01),
+              bottom: BorderSide(color: AppColors.text01),),
+            // borderRadius: const BorderRadius.only(
+            //     bottomRight: Radius.circular(8.0),
+            //     bottomLeft: Radius.circular(8.0)),
+            color: AppColors.white,
+          ),
+          child: ListView(
+            primary: true,
+            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.all(8.s),
+            children: [
+              subject(null),
+              subject('영어'),
+              subject('수학'),
+              subject('과학'),
+              subject('국사'),
+              subject('정보'),
+              subject('사회'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -129,6 +141,101 @@ class HomeView extends BaseView<HomeController> {
         color: AppColors.blue04,
       ),
       child: Text(name, style: Styles.suitMDBold.copyWith(color: AppColors.white),),
+    );
+  }
+
+  Widget summarizeGrade() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(4.s),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.text01),
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8.0),
+                topLeft: Radius.circular(8.0)),
+            color: AppColors.blue02,
+          ),
+          child: Text('나의 성적', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
+        ),
+        Container(
+          height: 80.s,
+          padding: EdgeInsets.all(4.s),
+          decoration: const BoxDecoration(
+            // border: Border.all(color: AppColors.text01),
+            border: Border(
+              left: BorderSide(color: AppColors.text01),
+              right: BorderSide(color: AppColors.text01),
+              bottom: BorderSide(color: AppColors.text01),),
+            // borderRadius: const BorderRadius.only(
+            //     bottomRight: Radius.circular(8.0),
+            //     bottomLeft: Radius.circular(8.0)),
+            color: AppColors.white,
+          ),
+          child: SizedBox(
+            height: 100.s,
+            child: Column(
+              children: [
+                textItem('평균 점수', 85 ),
+                textItem('평균 등급', 2.23 ),
+              ],
+            ),
+
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget textItem(String header, double value) {
+
+    return Row(
+      children: [
+        Text('$header : ', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
+        Text('$value', style: Styles.suitMDBold.copyWith(color: AppColors.red01),),
+      ],
+    );
+  }
+
+  Widget shareGrade() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(4.s),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.text01),
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8.0),
+                topLeft: Radius.circular(8.0)),
+            color: AppColors.blue02,
+          ),
+          child: Text('공유 하기', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
+        ),
+        Container(
+          height: 80.s,
+          padding: EdgeInsets.all(4.s),
+          decoration: const BoxDecoration(
+            // border: Border.all(color: AppColors.text01),
+            border: Border(
+              left: BorderSide(color: AppColors.text01),
+              right: BorderSide(color: AppColors.text01),
+              bottom: BorderSide(color: AppColors.text01),),
+            // borderRadius: const BorderRadius.only(
+            //     bottomRight: Radius.circular(8.0),
+            //     bottomLeft: Radius.circular(8.0)),
+            color: AppColors.white,
+          ),
+          child: Container(
+              height: 100.s
+          ),
+        ),
+      ],
     );
   }
 }
