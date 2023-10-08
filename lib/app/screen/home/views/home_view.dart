@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '/app/core/base/base_view.dart';
 import '/app/core/utils/ui_size_config.dart';
 import '/app/core/values/app_values.dart';
 import '/app/core/widget/common/common_bottom_button.dart';
+import '../../../core/base/base_view.dart';
 import '../../../core/utils/logger.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/text_styles.dart';
@@ -52,10 +52,11 @@ class HomeView extends BaseView<HomeController> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           subjectList(),
-          SizedBox(height: 20.s,),
+          SizedBox(height: 80.s,),
           summarizeGrade(),
-          SizedBox(height: 20.s,),
+          SizedBox(height: 80.s,),
           shareGrade(),
+          SizedBox(height: 80.s,),
         ],
       )
     );
@@ -74,8 +75,9 @@ class HomeView extends BaseView<HomeController> {
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.text01),
             borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(8.0),
-                topLeft: Radius.circular(8.0)),
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0)),
+
             color: AppColors.blue02,
           ),
           child: Text('과목', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
@@ -86,7 +88,7 @@ class HomeView extends BaseView<HomeController> {
           decoration: const BoxDecoration(
             // border: Border.all(color: AppColors.text01),
             border: Border(
-              left: BorderSide(color: AppColors.text01),
+              left: BorderSide(color: AppColors.text04),
               right: BorderSide(color: AppColors.text01),
               bottom: BorderSide(color: AppColors.text01),),
             // borderRadius: const BorderRadius.only(
@@ -155,14 +157,15 @@ class HomeView extends BaseView<HomeController> {
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.text01),
             borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(8.0),
-                topLeft: Radius.circular(8.0)),
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0)),
             color: AppColors.blue02,
           ),
           child: Text('나의 성적', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
         ),
         Container(
-          height: 80.s,
+          alignment: Alignment.center,
+          height: 85.s,
           padding: EdgeInsets.all(4.s),
           decoration: const BoxDecoration(
             // border: Border.all(color: AppColors.text01),
@@ -177,10 +180,28 @@ class HomeView extends BaseView<HomeController> {
           ),
           child: SizedBox(
             height: 100.s,
-            child: Column(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                textItem('평균 점수', 85 ),
-                textItem('평균 등급', 2.23 ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+
+                  children: [
+                    textItem('평균 점수', 85 ),
+                    textItem('평균 등급', 2.23 ),
+                  ],
+                ),
+                SizedBox(width: 20.s,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    textItem('지난 평균 점수', 64),
+                    textItem('지난 평균 등급', 4),
+                  ],
+                ),
               ],
             ),
 
@@ -194,8 +215,8 @@ class HomeView extends BaseView<HomeController> {
 
     return Row(
       children: [
-        Text('$header : ', style: Styles.suitMDBold.copyWith(color: AppColors.text01),),
-        Text('$value', style: Styles.suitMDBold.copyWith(color: AppColors.red01),),
+        Text('$header : ', style: Styles.suitSMBold.copyWith(color: AppColors.text01),),
+        Text('$value', style: Styles.suitSMBold.copyWith(color: AppColors.red01),),
       ],
     );
   }
@@ -211,14 +232,14 @@ class HomeView extends BaseView<HomeController> {
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.text01),
             borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(8.0),
-                topLeft: Radius.circular(8.0)),
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0)),
             color: AppColors.blue02,
           ),
           child: Text('공유 하기', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
         ),
         Container(
-          height: 80.s,
+          height: 100.s,
           padding: EdgeInsets.all(4.s),
           decoration: const BoxDecoration(
             // border: Border.all(color: AppColors.text01),
@@ -231,11 +252,33 @@ class HomeView extends BaseView<HomeController> {
             //     bottomLeft: Radius.circular(8.0)),
             color: AppColors.white,
           ),
-          child: Container(
-              height: 100.s
+          child: Column(
+            children: [
+              SizedBox(height: 6.s,),
+              Text('나의 성적을 친구들과 공유하여\n 자신의 위치를 알아봅시다!', style: Styles.suitMDRegular.copyWith(color: AppColors.text02),),
+              SizedBox(height: 10.s,),
+              GestureDetector(
+                onTap: () => controller.onShare(),
+                child: Container(
+                  width: 100.s,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.text01),
+                    borderRadius: BorderRadius.circular(40.s),
+                    color: AppColors.white
+                  ),
+                  padding: EdgeInsets.all(4.s),
+                  child: Text('공유하기', style: Styles.suitMDRegular.copyWith(color: AppColors.text01))
+                ),
+              )
+            ],
           ),
+
         ),
       ],
     );
   }
+
+
 }
+

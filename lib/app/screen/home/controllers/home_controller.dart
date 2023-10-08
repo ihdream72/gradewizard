@@ -24,4 +24,11 @@ class HomeController extends BaseController {
     Get.toNamed(Routes.addSubject);
   }
 
+  void onShare() {
+    Get.toNamed(Routes.addSubject);
+
+
+
+  }
+
 }
