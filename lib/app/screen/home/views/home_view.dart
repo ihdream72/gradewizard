@@ -22,6 +22,7 @@ class HomeView extends BaseView<HomeController> {
 
     return const CTitleBar(
       title: '등급 계산기',
+      titleColor: AppColors.white,
       color: AppColors.secondary,
     );
   }
@@ -43,23 +44,23 @@ class HomeView extends BaseView<HomeController> {
   Widget body(BuildContext context) {
     UISizeConfig.init(context);
 
-    return Container(
-      width: Get.width,
-      height: Get.height - Get.mediaQuery.padding.top - Get.mediaQuery.padding.bottom - AppValues.appBarSize,
-      padding: EdgeInsets.all(8.s),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          subjectList(),
-          SizedBox(height: 80.s,),
-          summarizeGrade(),
-          SizedBox(height: 80.s,),
-          shareGrade(),
-          SizedBox(height: 80.s,),
-        ],
-      )
-    );
+    return Obx(() => Container(
+        width: Get.width,
+        height: Get.height - Get.mediaQuery.padding.top - Get.mediaQuery.padding.bottom - AppValues.appBarSize,
+        padding: EdgeInsets.all(8.s),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            subjectList(),
+            SizedBox(height: 80.s,),
+            summarizeGrade(),
+            SizedBox(height: 80.s,),
+            shareGrade(),
+            SizedBox(height: 80.s,),
+          ],
+        )
+    ));
   }
 
   Widget subjectList() {
@@ -80,7 +81,7 @@ class HomeView extends BaseView<HomeController> {
 
             color: AppColors.blue02,
           ),
-          child: Text('과목', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
+          child: Text('과목 - ${controller.subjectList.length}개', style: Styles.suitMDBold.copyWith(color: AppColors.white),),
         ),
         Container(
           height: 80.s,
@@ -96,31 +97,27 @@ class HomeView extends BaseView<HomeController> {
             //     bottomLeft: Radius.circular(8.0)),
             color: AppColors.white,
           ),
-          child: ListView(
+          child: ListView.builder(
             primary: true,
             physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.all(8.s),
-            children: [
-              subject(null),
-              subject('영어'),
-              subject('수학'),
-              subject('과학'),
-              subject('국사'),
-              subject('정보'),
-              subject('사회'),
-            ],
+            itemCount: controller.subjectList.length+1,
+            itemBuilder: (context, index) {
+
+              return subject(index);
+            },
           ),
         ),
       ],
     );
   }
 
-  Widget subject(String? name) {
+  Widget subject(int index) {
 
-    return name == null ?
+    return index == 0 ?
     GestureDetector(
-      onTap: () => controller.goAddSubject() ,
+      onTap: () => controller.goAddSubject(),
       child: Container(
           width: 60.s,
           height: 50.s,
@@ -133,16 +130,19 @@ class HomeView extends BaseView<HomeController> {
           child: const Icon(Icons.add, color: AppColors.white,),
         ),
     ) :
-    Container(
-      width: 60.s,
-      height: 50.s,
-      margin: EdgeInsets.only( right: 10.s),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.blue04),
-        color: AppColors.blue04,
+    GestureDetector(
+      onTap: () => controller.goEditSubject(index - 1),
+      child: Container(
+        width: 60.s,
+        height: 50.s,
+        margin: EdgeInsets.only( right: 10.s),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.blue04),
+          color: AppColors.blue04,
+        ),
+        child: Obx(() => Text(HomeController.subjectName[controller.subjectList[index-1].type]!, style: Styles.suitMDBold.copyWith(color: AppColors.white),)),
       ),
-      child: Text(name, style: Styles.suitMDBold.copyWith(color: AppColors.white),),
     );
   }
 
@@ -184,24 +184,9 @@ class HomeView extends BaseView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-
-                  children: [
-                    textItem('평균 점수', 85 ),
-                    textItem('평균 등급', 2.23 ),
-                  ],
-                ),
+                textItem('평균 점수', controller.averageScore ),
                 SizedBox(width: 20.s,),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    textItem('지난 평균 점수', 64),
-                    textItem('지난 평균 등급', 4),
-                  ],
-                ),
+                textItem('평균 등급', controller.averageGrade),
               ],
             ),
 
@@ -215,8 +200,8 @@ class HomeView extends BaseView<HomeController> {
 
     return Row(
       children: [
-        Text('$header : ', style: Styles.suitSMBold.copyWith(color: AppColors.text01),),
-        Text('$value', style: Styles.suitSMBold.copyWith(color: AppColors.red01),),
+        Text('$header : ', style: Styles.suitLGBold.copyWith(color: AppColors.text01),),
+        Text('$value', style: Styles.suitLGBold.copyWith(color: AppColors.red01),),
       ],
     );
   }

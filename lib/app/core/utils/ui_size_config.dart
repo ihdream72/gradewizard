@@ -47,6 +47,7 @@ extension UISizeDouble on double {
   double get s {
     return UISizeConfig.size(this);
   }
+
 }
 
 /// int type 에 extension 으로 이용

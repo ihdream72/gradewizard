@@ -43,12 +43,14 @@ class CTitleBar extends StatelessWidget {
         color: color,
         padding: EdgeInsets.only(top: Get.mediaQuery.padding.top),
         height: barHeight,
-        width: Get.width,
+        width: MediaQuery.of(context).size.width,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            onBack == null ? Container() :
+            onBack == null ? SizedBox(
+              width: barContentsHeight,
+              height: barContentsHeight,) :
             GestureDetector(
               onTap: () {
                 onBack!();
@@ -61,7 +63,7 @@ class CTitleBar extends StatelessWidget {
             ),
             const Spacer(),
             Container(
-              width: Get.width - AppValues.appBarSize*2 - 64.s,
+              width: MediaQuery.of(context).size.width - AppValues.appBarSize*2 - 64.s,
               height: barContentsHeight,
               padding: EdgeInsets.only(left: 16.s, right: 16.s),
               alignment: Alignment.center,

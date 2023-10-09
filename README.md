@@ -58,3 +58,5 @@
 [개발용]
 - flutter_lints (1.0.4) : coding style
 - logger (1.1.0) : log 
+
+flutter build apk --release

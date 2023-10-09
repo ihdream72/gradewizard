@@ -1,4 +1,4 @@
-name: audioscript
+name: gradewizard
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -46,6 +46,13 @@ dependencies:
 
   # tooltip
   just_the_tooltip: 0.0.12
+
+  # utils
+  shared_preferences: 2.2.0
+  fluttertoast: 8.2.2
+
+  flutter_cupertino_datetime_picker: 3.0.0
+  flutter_svg: 1.1.5
 
   # development
   logger: 1.1.0
